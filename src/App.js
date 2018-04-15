@@ -17,6 +17,8 @@ class App extends Component {
 					<br />
 					<button onClick={this.props.aumentar}>Aumentar</button>
 					<button onClick={this.props.disminuir}>Disminuir</button>
+					<br />
+					<input type="text" onClick={this.props.agregar}/>
 					To get started, edit <code>src/App.js</code> and save to reload.
 				</p>
 			</div>
@@ -30,16 +32,19 @@ class App extends Component {
 // function
 const mapStateToProps = (state) => {
 	return {
-		informacion: state.cantidad
+		informacion: state.numero
 	}
 }
 
 // asume que las funciones internas son action creators
 // y que al ingresarlas a nuestro componente las engloba en DISPATCH
 // para que puedan ser llamadas como un distpatch
-const mapDispatchToProps = {
-	aumentar: () => { return { type: 'AUM'}},
-	disminuir: () => { return { type: 'DIS' }}
+const mapDispatchToProps = (dispatch) => {
+	return {
+		aumentar: () => { dispatch( { type: 'AUM'} ); },
+		disminuir: () => { dispatch({ type: 'DIS' }); },
+		agregar: () => { dispatch( { type: 'ADD'}); }
+	}
 }
 
 
