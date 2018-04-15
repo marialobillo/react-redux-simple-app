@@ -23,7 +23,10 @@ const reducerNumero = (state = 2, action) => {
 const reducerTareas = (state = [], action) => {
 	var nuevoEstado = Object.assign({}, state);
 	if(action.type === 'ADD'){
-		nuevoEstado = state.concat()
+		console.log(nuevoEstado);
+		nuevoEstado = state.concat([{tarea: action.tarea, id: action.id}]);
+		console.log(nuevoEstado);
+		return nuevoEstado;
 	}
 	return state;
 }

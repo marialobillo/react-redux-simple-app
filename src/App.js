@@ -5,6 +5,12 @@ import './App.css';
 import { connect } from 'react-redux';
 
 class App extends Component {
+	agregarTarea = (evento) => {
+		if(evento.which === 13){
+			console.log(evento.target.value);
+			this.props.agregar(evento.target.value, 1);
+		}
+	}
 	render() {
 		return (
 			<div className="App">
@@ -18,7 +24,8 @@ class App extends Component {
 					<button onClick={this.props.aumentar}>Aumentar</button>
 					<button onClick={this.props.disminuir}>Disminuir</button>
 					<br />
-					<input type="text" onClick={this.props.agregar}/>
+					<input type="text" onKeyPress={this.agregarTarea.bind(this)} id=""/>
+					<br />
 					To get started, edit <code>src/App.js</code> and save to reload.
 				</p>
 			</div>
@@ -43,7 +50,7 @@ const mapDispatchToProps = (dispatch) => {
 	return {
 		aumentar: () => { dispatch( { type: 'AUM'} ); },
 		disminuir: () => { dispatch({ type: 'DIS' }); },
-		agregar: () => { dispatch( { type: 'ADD'}); }
+		agregar: (tarea, id) => { dispatch( { type: 'ADD', tarea, id}); }
 	}
 }
 
